@@ -1,4 +1,4 @@
-from inputs.aoc1_1_input import input
+from inputs.aocx_x_input import input
 
 
 def run():
