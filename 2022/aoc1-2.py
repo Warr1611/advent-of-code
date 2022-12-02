@@ -1,3 +1,4 @@
+import heapq
 import os
 
 def run():
@@ -17,7 +18,7 @@ def run():
             # Else, convert the contents of the line into an int and add it to the current elf's total number of calories
             else:
                 total_calories = total_calories + int(line)
-    print(max(elf_calories))
+    print(sum(heapq.nlargest(3, elf_calories)))
 
 
 if __name__ == "__main__":
