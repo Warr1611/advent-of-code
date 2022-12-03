@@ -1,12 +1,13 @@
 import os
 
+
 def run():
     # Create a list, each entry being the total calories carried by an elf
     elf_calories = []
     total_calories = 0
     file_dir = os.path.dirname(os.path.abspath(__file__))
     # Open the file and parse each line
-    with open(os.path.join(file_dir, "inputs\\aoc1_1_input.txt"),'r') as file:
+    with open(os.path.join(file_dir, "inputs\\aoc1_1_input.txt"), "r") as file:
         for line in file:
             line = line.strip()
             # If line is blank, set list[index] = total_calories, then reset total_calories to start the next elf
