@@ -14,13 +14,28 @@ jobs:
     steps:
       - uses: actions/checkout@v3                # clones your repo
           
+      - name: Set current month as env variable
+        run: echo "MONTH=$(date +%m)" >> $GITHUB_ENV
+      - name: Echo current month
+        run: echo ${{ env.MONTH }} # Gives month as between "01" - "12"
+        
+      - name: Set current year as env variable
+        run: echo "CURYEAR=$(date +%Y)" >> $GITHUB_ENV
+      - name: Echo current year
+        run: echo ${{ env.CURYEAR }} # Gives year, ex: 2023
+        
+      - name: Set year to use as env variable.
+        run: echo "YEAR=if [ ${[ env.MONTH }} = 12 ]; then echo ${{ env.CURYEAR }}; else echo $(date -d "${{ env.CURYEAR }} last year" +%Y); fi" >> $GITHUB_ENV
+      - name: Echo year to use
+        run: echo ${{ env.YEAR }} # Gives year, ex: 2023
+          
       - uses: joblo2213/aoc-badges-action@v3
         with:
           userid: 1031251                          # your user id, see setup on how to obtain
           session: ${{ secrets.AOC_SESSION }}    # secret containing session code, see setup on how to obtain
           
 #         Optional inputs:         
-          year: 2022                                                                                     # The year for which stats should be retrieved
+          year: ${{ env.YEAR }}                                                                                     # The year for which stats should be retrieved
           leaderboard: 'https://adventofcode.com/2022/leaderboard/private/view/1031251.json'               # The url of the leaderboard from witch the data is fetched. Typically your private leaderboard.
           file: 'README.md'                                                                              # The file that contains the badges
           dayRegex: '(?<=https:\/\/img\.shields\.io\/badge\/day%20📅-)[0-9]+(?=-blue)'                   # Regular expression that finds the content of the day badge in your file.
