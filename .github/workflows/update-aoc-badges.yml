@@ -25,7 +25,7 @@ jobs:
         run: echo ${{ env.CURYEAR }} # Gives year, ex: 2023
         
       - name: Set year to use as env variable.
-        run: echo "YEAR=if [ ${{ env.MONTH }} = 12 ]; then echo ${{ env.CURYEAR }}; else echo $(date -d "${{ env.CURYEAR }} last year" +%Y); fi" >> $GITHUB_ENV
+        run: echo "YEAR=$(if [ ${{ env.MONTH }} = 12 ]; then echo ${{ env.CURYEAR }}; else echo $(date -d "${{ env.CURYEAR }} last year" +%Y); fi)" >> $GITHUB_ENV
       - name: Echo year to use
         run: echo ${{ env.YEAR }} # Gives year, ex: 2023
           
