@@ -1,5 +1,4 @@
 import os
-from word2number
 
 
 def get_calibration_value(line):
